@@ -3,11 +3,10 @@
 
 GameLevel::GameLevel()
 {
-	// Player 액터 추가
+	// Player 액터 추가.
 	AddNewActor(new Player());
 }
 
 GameLevel::~GameLevel()
 {
 }
-

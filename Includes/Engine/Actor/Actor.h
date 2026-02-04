@@ -68,7 +68,7 @@ namespace Wanted
 		// 그릴 문자(이미지).
 		char* image = nullptr;
 
-		// 문자열 길이
+		// 문자열 길이.
 		int width = 0;
 
 		// 색상.

@@ -15,11 +15,13 @@ public:
 private:
 	virtual void Tick(float deltaTime) override;
 
-private:
-	// 오른쪽으로 이동하는 함수
+	// 오른쪽으로 이동하는 함수.
 	void MoveRight();
-
-	// 왼쪽으로 이동하는 함수
+	
+	// 왼쪽으로 이동하는 함수.
 	void MoveLeft();
+
+private:
+
 };
 

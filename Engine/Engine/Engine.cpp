@@ -23,7 +23,7 @@ namespace Wanted
 		// 설정 파일 로드.
 		LoadSetting();
 
-		// 렌더러 객체 생성
+		// 렌더러 객체 생성.
 		renderer = new Renderer(Vector2(setting.width, setting.height));
 
 		// 커서 끄기.
@@ -46,7 +46,7 @@ namespace Wanted
 			input = nullptr;
 		}
 
-		// 렌더러 객체 제거
+		// 렌더러 객체 제거.
 		SafeDelete(renderer);
 	}
 
@@ -177,23 +177,23 @@ namespace Wanted
 		// 파일에서 읽기.
 		size_t readSize = fread(buffer, sizeof(char), 2048, file);
 
-		// 문자열 자르기 (파싱)
-		// 첫번째 문자열 분리할 때는 첫 파라미터 전달
+		// 문자열 자르기 (파싱).
+		// 첫번째 문자열 분리할 때는 첫 파라미터 전달.
 		char* context = nullptr;
 		char* token = nullptr;
 		token = strtok_s(buffer, "\n", &context);
 
-		// 반복해서 자르기
+		// 반복해서 자르기.
 		while (token)
 		{
-			// 설정 텍스트에서 파라미터 이름만 읽기
+			// 설정 텍스트에서 파라미터 이름만 읽기.
 			char header[10] = {};
 
-			// 문자열 읽기 함수 활용
-			// 이때 "%s"로 읽으면 스페이스가 있으면 거기까지 읽음
+			// 문자열 읽기 함수 활용.
+			// 이때 "%s"로 읽으면 스페이스가 있으면 거기까지 읽음.
 			sscanf_s(token, "%s", header, 10);
 
-			// 문자열 비교 및 값 읽기
+			// 문자열 비교 및 값 읽기.
 			if (strcmp(header, "framerate") == 0)
 			{
 				sscanf_s(token, "framerate = %f", &setting.framerate);
@@ -207,12 +207,12 @@ namespace Wanted
 				sscanf_s(token, "height = %d", &setting.height);
 			}
 
-			// 개행 문자로 문자열 분리
+			// 개행 문자로 문자열 분리.
 			token = strtok_s(nullptr, "\n", &context);
 		}
 
 		// 문자열 포맷 활용해서 데이터 추출.
-		/*sscanf_s(buffer, "framerate = %f", &setting.framerate);*/
+		//sscanf_s(buffer, "framerate = %f", &setting.framerate);
 
 		// 파일 닫기.
 		fclose(file);
@@ -262,10 +262,10 @@ namespace Wanted
 			return;
 		}
 
-		// 레벨의 모든 액터가 렌더 데이터를 제출
+		// 레벨의 모든 액터가 렌더 데이터를 제출.
 		mainLevel->Draw();
 
-		// 렌더러에 그리기 명령 전달
+		// 렌더러에 그리기 명령 전달.
 		renderer->Draw();
 	}
 }

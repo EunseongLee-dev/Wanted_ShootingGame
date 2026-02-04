@@ -13,7 +13,7 @@ namespace Wanted
 		Color color)
 		: position(position), color(color)
 	{
-		// 문자열 복사
+		// 문자열 복사.
 		width = static_cast<int>(strlen(image));
 		this->image = new char[width + 1];
 		strcpy_s(this->image, width + 1, image);
@@ -21,7 +21,7 @@ namespace Wanted
 
 	Actor::~Actor()
 	{
-		// 메모리 해제
+		// 메모리 해제.
 		SafeDeleteArray(image);
 	}
 
@@ -39,7 +39,7 @@ namespace Wanted
 	{
 		//Renderer::Draw(position, color, image);
 
-		// 렌더러에 데이터 제출
+		// 렌더러에 데이터 제출.
 		Renderer::Get().Submit(image, position, color, sortingOrder);
 	}
 
@@ -48,7 +48,7 @@ namespace Wanted
 		// 렌더러에 빈칸 그리기 요청.
 		//Renderer::Draw(position, ' ');
 
-		// 변경하려는 위치가 현재 위치와 같으면 건너뜀
+		// 변경하려는 위치가 현재 위치와 같으면 건너뀜.
 		if (position == newPosition)
 		{
 			return;

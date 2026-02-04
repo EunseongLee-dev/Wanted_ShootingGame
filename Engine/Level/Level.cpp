@@ -66,8 +66,9 @@ namespace Wanted
 		//		// 위치 비교.
 		//		if (actor->GetPosition() == otherActor->GetPosition())
 		//		{
-		//			// 정렬 순서 비교
-		//			if (actor->GetSortingOrder() < otherActor->GetSortingOrder())
+		//			// 정렬 순서 비교.
+		//			if (actor->GetSortingOrder()
+		//				< otherActor->GetSortingOrder())
 		//			{
 		//				search = otherActor;
 		//				break;
@@ -81,18 +82,18 @@ namespace Wanted
 		//		continue;
 		//	}
 
-		//	// 그리기
+		//	// 그리기.
 		//	actor->Draw();
 		//}
 
-		// 액터 순회하면서 Draw 함수 호출
+		// 액터 순회하면서 Draw 함수 호출.
 		for (Actor* const actor : actors)
 		{
 			if (!actor->IsActive())
 			{
 				continue;
 			}
-			
+
 			actor->Draw();
 		}
 	}

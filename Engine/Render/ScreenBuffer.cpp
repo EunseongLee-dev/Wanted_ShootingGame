@@ -1,5 +1,4 @@
-#include "Screenbuffer.h"
-
+#include "ScreenBuffer.h"
 #include <iostream>
 #include "Renderer.h"
 
@@ -8,7 +7,7 @@ namespace Wanted
 	ScreenBuffer::ScreenBuffer(const Vector2& screenSize)
 		: screenSize(screenSize)
 	{
-		// Console Output 생성
+		// Console Output 생성.
 		buffer = CreateConsoleScreenBuffer(
 			GENERIC_READ | GENERIC_WRITE,
 			FILE_SHARE_READ | FILE_SHARE_WRITE,
@@ -17,15 +16,19 @@ namespace Wanted
 			nullptr
 		);
 
-		// 예외 처리
+		// 예외 처리.
 		if (buffer == INVALID_HANDLE_VALUE)
 		{
-			// 팝업 창 띄우는 함수
-			MessageBoxA(nullptr, "ScreenBuffer - failed to create buffer.", "Buffer creation error", MB_OK);
+			MessageBoxA(
+				nullptr,
+				"ScreenBuffer - Failed to create buffer.",
+				"Buffer creation error",
+				MB_OK
+			);
 			__debugbreak();
 		}
 
-		// 콘솔 창 크기 지정
+		// 콘솔 창 크기 지정.
 		SMALL_RECT rect;
 		rect.Left = 0;
 		rect.Top = 0;
@@ -34,31 +37,30 @@ namespace Wanted
 
 		if (!SetConsoleWindowInfo(buffer, true, &rect))
 		{
-			/*DWORD errorCode = GetLastError();*/
-
+			//DWORD errorCode = GetLastError();
 			std::cerr << "Failed to set console window info.\n";
 			__debugbreak();
 		}
 
-		// 버퍼 크기 설정
+		// 버퍼 크기 설정.
 		if (!SetConsoleScreenBufferSize(buffer, screenSize))
 		{
-			std::cerr << "Failed to set console window info.\n";
+			std::cerr << "Failed to set console buffer size.\n";
 			__debugbreak();
 		}
 
-		// 커서 끄기
+		// 커서 끄기.
 		CONSOLE_CURSOR_INFO info;
 		GetConsoleCursorInfo(buffer, &info);
 
-		// 끄도록 설정
+		// 끄도록 설정.
 		info.bVisible = false;
 		SetConsoleCursorInfo(buffer, &info);
 	}
 
 	ScreenBuffer::~ScreenBuffer()
 	{
-		// 버퍼 해제
+		// 버퍼 해제.
 		if (buffer)
 		{
 			CloseHandle(buffer);
@@ -68,11 +70,11 @@ namespace Wanted
 	void ScreenBuffer::Clear()
 	{
 		// 실제로 화면을 지우고 난 뒤에 
-		// 몇 글자를 썼는지 반환 받는데 사용
+		// 몇 글자를 썼는지 반환 받는데 사용.
 		DWORD writtenCount = 0;
 
-		// 콘솔 버퍼에 있는 화면 지우기
-		// 그래픽스 -> 지우기 -> 한 색상(또는 값)으로 덮어쓰기
+		// 콘솔 버퍼에 있는 화면 지우기.
+		// 그래픽스 -> 지우기 -> 한 색상(또는 값)으로 덮어쓰기.
 		FillConsoleOutputCharacterA(
 			buffer,
 			' ',
@@ -82,6 +84,7 @@ namespace Wanted
 		);
 	}
 
+	
 
 	void ScreenBuffer::Draw(CHAR_INFO* charInfo)
 	{
@@ -92,7 +95,7 @@ namespace Wanted
 		writeRegion.Right = static_cast<short>(screenSize.x - 1);
 		writeRegion.Bottom = static_cast<short>(screenSize.y - 1);
 
-		// 버퍼에 전달 받은 글자 배열 설정
+		// 버퍼에 전달 받은 글자 배열 설정.
 		WriteConsoleOutputA(
 			buffer,
 			charInfo,

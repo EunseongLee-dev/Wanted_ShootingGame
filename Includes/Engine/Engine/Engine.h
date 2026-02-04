@@ -17,10 +17,10 @@ namespace Wanted
 			// 프레임 속도.
 			float framerate = 0.0f;
 
-			// 화면 너비
+			// 화면 너비.
 			int width = 0;
 
-			// 화면 높이
+			// 화면 높이.
 			int height = 0;
 		};
 
@@ -40,13 +40,14 @@ namespace Wanted
 		// 전역 접근 함수.
 		static Engine& Get();
 
-		// 화면 너비 반환 함수
+		// 화면 너비 반환 함수.
 		inline int GetWidth() const { return setting.width; }
 
-		// 화면 높이 반환 함수
+		// 화면 높이 반환 함수.
 		inline int GetHeight() const { return setting.height; }
 
 	protected:
+
 		// 정리 함수.
 		void Shutdown();
 
@@ -73,7 +74,7 @@ namespace Wanted
 		// 입력 관리자.
 		Input* input = nullptr;
 
-		// 렌더러 객체
+		// 렌더러 객체.
 		Renderer* renderer = nullptr;
 
 		// 메인 레벨.
